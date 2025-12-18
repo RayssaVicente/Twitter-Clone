@@ -10,25 +10,20 @@ class Route extends Bootstrap {
 
 		$routes['home'] = array(
 			'route' => '/',
-			'controller' => 'indexController',
+			'controller' => 'IndexController',
 			'action' => 'index'
 		);
 
-		$routes['inscreverse'] = array(
-			'route' => '/inscreverse',
-			'controller' => 'indexController',
+		
+		$routes['signup'] = array(
+			'route' => '/signup',
+			'controller' => 'IndexController',
 			'action' => 'inscreverse'
-		);
-
-		$routes['singup'] = array(
-			'route' => '/singup',
-			'controller' => 'indexController',
-			'action' => 'singup'
 		);
 
 		$routes['registrar'] = array(
 			'route' => '/registrar',
-			'controller' => 'indexController',
+			'controller' => 'IndexController',
 			'action' => 'registrar'
 		);
 
@@ -38,31 +33,24 @@ class Route extends Bootstrap {
 			'action' => 'autenticar'
 		);
 
-	
-		$routes['time'] = array(
-			'route' => '/time',
+		$routes['timeline'] = array(
+			'route' => '/timeline',
 			'controller' => 'AppController',
-			'action' => 'time'
-		);
-		
-		$routes['sair'] = array(
-			'route' => '/sair',
-			'controller' => 'AuthController',
-			'action' => 'sair'
+			'action' => 'timeline'
 		);
 
-		
 		$routes['tweet'] = array(
 			'route' => '/tweet',
 			'controller' => 'AppController',
 			'action' => 'tweet'
 		);
 
-		$routes['quem_seguir'] = array(
-			'route' => '/quem_seguir',
-			'controller' => 'AppController',
-			'action' => 'quemSeguir'
+		$routes['sair'] = array(
+			'route' => '/sair',
+			'controller' => 'AuthController',
+			'action' => 'sair'
 		);
+
 
 		$routes['acao'] = array(
 			'route' => '/acao',
@@ -70,13 +58,17 @@ class Route extends Bootstrap {
 			'action' => 'acao'
 		);
 
-		
-		$routes['remover_tweet'] = array(
+		$routes['remover'] = array(
 			'route' => '/remover',
 			'controller' => 'AppController',
-			'action' => 'removerTweet'
+			'action' => 'remover'
 		);
 
+		$routes['perfil'] = array(
+			'route' => '/perfil',
+			'controller' => 'AppController',
+			'action' => 'perfil'
+		);
 
 
 		$this->setRoutes($routes);
