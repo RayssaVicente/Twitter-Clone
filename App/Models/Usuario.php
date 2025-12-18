@@ -11,6 +11,13 @@ class Usuario extends Model {
 	private $email;
 	private $senha;
 
+	private $biografia;
+	private $localizacao;
+	private $site;
+	private $imagem_perfil;
+	private $imagem_capa;
+
+
 	public function __get($atributo) {
 		return $this->$atributo;
 	}
@@ -160,6 +167,49 @@ public function getTotalSeguidores() {
     return $stmt->fetch(\PDO::FETCH_ASSOC);
 }
 
+public function atualizarPerfil() {
+    // Query base para textos
+    $query = "UPDATE usuarios SET nome = :nome, biografia = :biografia, localizacao = :localizacao, site = :site";
+    
+    // Se houve upload de imagem de perfil, adiciona na query
+    if($this->imagem_perfil) {
+        $query .= ", imagem_perfil = :imagem_perfil";
+    }
+    // Se houve upload de imagem de capa, adiciona na query
+    if($this->imagem_capa) {
+        $query .= ", imagem_capa = :imagem_capa";
+    }
+
+    $query .= " WHERE id = :id";
+
+    $stmt = $this->db->prepare($query);
+    
+    $stmt->bindValue(':nome', $this->__get('nome'));
+    $stmt->bindValue(':biografia', $this->__get('biografia'));
+    $stmt->bindValue(':localizacao', $this->__get('localizacao'));
+    $stmt->bindValue(':site', $this->__get('site'));
+    $stmt->bindValue(':id', $this->__get('id'));
+
+    // Binda as imagens apenas se elas foram setadas
+    if($this->imagem_perfil) {
+        $stmt->bindValue(':imagem_perfil', $this->__get('imagem_perfil'));
+    }
+    if($this->imagem_capa) {
+        $stmt->bindValue(':imagem_capa', $this->__get('imagem_capa'));
+    }
+
+    $stmt->execute();
+    return true;
+}
+
+public function getInfoUsuario() {
+    $query = "select nome, biografia, localizacao, site, imagem_perfil, imagem_capa from usuarios where id = :id";
+    $stmt = $this->db->prepare($query);
+    $stmt->bindValue(':id', $this->__get('id'));
+    $stmt->execute();
+
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
+}
 
 }
 
