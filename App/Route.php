@@ -70,6 +70,12 @@ class Route extends Bootstrap {
 			'action' => 'perfil'
 		);
 
+		$routes['salvar_perfil'] = array(
+    'route' => '/salvar_perfil',
+    'controller' => 'AppController',
+    'action' => 'salvarPerfil'
+);
+
 
 		$this->setRoutes($routes);
 	}
