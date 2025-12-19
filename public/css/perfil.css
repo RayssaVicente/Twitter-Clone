@@ -1,0 +1,11 @@
+body {
+    background-color: #000;
+}
+
+.border-secondary {
+    border-color: #2f3336 !important; /* Cor exata da borda do X */
+}
+
+.bg-secondary {
+    background-color: #333639 !important; /* Cor da capa padrão */
+}
