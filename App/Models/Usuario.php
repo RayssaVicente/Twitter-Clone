@@ -171,12 +171,12 @@ public function atualizarPerfil() {
     // Query base para textos
     $query = "UPDATE usuarios SET nome = :nome, biografia = :biografia, localizacao = :localizacao, site = :site";
     
-    // Se houve upload de imagem de perfil, adiciona na query
-    if($this->imagem_perfil) {
+    // Verificamos via __get para garantir acesso ao atributo privado
+    if($this->__get('imagem_perfil') != '') {
         $query .= ", imagem_perfil = :imagem_perfil";
     }
-    // Se houve upload de imagem de capa, adiciona na query
-    if($this->imagem_capa) {
+    
+    if($this->__get('imagem_capa') != '') {
         $query .= ", imagem_capa = :imagem_capa";
     }
 
@@ -190,16 +190,14 @@ public function atualizarPerfil() {
     $stmt->bindValue(':site', $this->__get('site'));
     $stmt->bindValue(':id', $this->__get('id'));
 
-    // Binda as imagens apenas se elas foram setadas
-    if($this->imagem_perfil) {
+    if($this->__get('imagem_perfil') != '') {
         $stmt->bindValue(':imagem_perfil', $this->__get('imagem_perfil'));
     }
-    if($this->imagem_capa) {
+    if($this->__get('imagem_capa') != '') {
         $stmt->bindValue(':imagem_capa', $this->__get('imagem_capa'));
     }
 
-    $stmt->execute();
-    return true;
+    return $stmt->execute();
 }
 
 public function getInfoUsuario() {
