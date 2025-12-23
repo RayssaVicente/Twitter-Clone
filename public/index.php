@@ -2,16 +2,21 @@
 spl_autoload_register(function ($class) {
     $base_dir = __DIR__ . '/../';
     
-    // Converte App\Route em App/Route.php
+    // 1. Tenta o caminho exato (Ex: MF/Init/Bootstrap.php)
     $file = $base_dir . str_replace('\\', '/', $class) . '.php';
 
     if (file_exists($file)) {
         require_once $file;
     } else {
-        // Tenta converter tudo para minúsculo caso a pasta física seja 'mf' em vez de 'MF'
-        $file_lower = $base_dir . str_replace('\\', '/', strtolower($class)) . '.php';
-        if (file_exists($file_lower)) {
-            require_once $file_lower;
+        // 2. Fallback: Tenta apenas as pastas em minúsculo, mas mantém o nome do Arquivo original
+        // Isso resolve se a pasta for 'mf' mas o arquivo for 'Bootstrap.php'
+        $parts = explode('\\', $class);
+        $fileName = array_pop($parts);
+        $folders = strtolower(implode('/', $parts));
+        $file_alt = $base_dir . $folders . '/' . $fileName . '.php';
+        
+        if (file_exists($file_alt)) {
+            require_once $file_alt;
         }
     }
 });
