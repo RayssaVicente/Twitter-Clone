@@ -4,22 +4,26 @@ namespace App;
 
 class Connection {
 
-	public static function getDb() {
-		try {
+  public static function getDb() {
+    try {
+      // O getenv busca o nome da variável que você cadastrou na Vercel
+      $host = getenv('DB_HOST') ?: "mysql-twitter-clone.alwaysdata.net";
+      $dbname = getenv('DB_NAME') ?: "twitter-clone_db";
+      $user = getenv('DB_USER') ?: "448174";
+      $pass = getenv('DB_PASS') ?: "Z8Bi2CYdTPh@2R";
 
-			$conn = new \PDO(
-				"mysql:host=localhost;dbname=twitter_clone;charset=utf8mb4;",
-				"root",
-				"0612" 
-			);
-			 $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+      $conn = new \PDO(
+        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        $user,
+        $pass
+      );
+      
+      $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-			return $conn;
+      return $conn;
 
-		} catch (\PDOException $e) {
-            die("Erro ao conectar ao banco: " . $e->getMessage());
-        }
-	}
+    } catch (\PDOException $e) {
+        die("Erro de conexão. Verifique as configurações de ambiente.");
+    }
+  }
 }
-
-?>
