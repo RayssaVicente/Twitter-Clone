@@ -16,7 +16,7 @@ Este projeto é uma réplica funcional das principais características do Twitte
 O projeto foi construído utilizando as seguintes tecnologias:
 
 - **Back-end:** [PHP](https://www.php.net/) (Lógica do servidor e rotas).
-- **Front-end:** [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML) e [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS) (Interface e design).
+- **Front-end:** [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML) e [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS) e Bootstrap (Interface e design).
 - **Banco de Dados:** MySQL (Persistência de dados de usuários e tweets).
 - **Gerenciador de Dependências:** [Composer](https://getcomposer.org/) (Autoload e bibliotecas).
 
@@ -33,7 +33,7 @@ Siga os passos abaixo para configurar o projeto em sua máquina local:
 composer install
    
 4. **Rodar o projeto:**
-5. 
+   
 php -S localhost:8080 -t public
 
 ### 📺 Demonstração do Projeto
