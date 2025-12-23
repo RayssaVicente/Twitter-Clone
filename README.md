@@ -29,12 +29,18 @@ Siga os passos abaixo para configurar o projeto em sua máquina local:
    git clone [https://github.com/RayssaVicente/Twitter-Clone.git](https://github.com/RayssaVicente/Twitter-Clone.git)
    
 2. **Instalar as dependencias:**
+   
 composer install
    
-3. **Rodar o projeto:**
+4. **Rodar o projeto:**
+5. 
 php -S localhost:8080 -t public
 
+### 📺 Demonstração do Projeto
 
-1. **Clone o repositório:**
-   ```bash
-   git clone [https://github.com/RayssaVicente/Twitter-Clone.git](https://github.com/RayssaVicente/Twitter-Clone.git)
+https://github.com/user-attachments/assets/c6e9603b-a8fe-4eac-be89-d097ecd21dc6
+
+### Projeto no Vercel
+
+https://twitter-clone-hbfl.vercel.app/
+
