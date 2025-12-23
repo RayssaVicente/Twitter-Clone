@@ -1,4 +1,4 @@
-# 🐦 Twitter Clone
+# Twitter Clone
 
 Este projeto é uma réplica funcional das principais características do Twitter (atualmente X), desenvolvida para fins de estudo sobre arquitetura web, manipulação de bancos de dados e integração Front-end/Back-end.
 
