@@ -1,18 +1,14 @@
 {
-	"name": "twitterclone",
-	"require": {
-		"php": ">= 7.0"
-	},
-	"authors": [
-		{
-			"name": "Rayssa Vicente",
-			"email": "jorge@teste.com.br"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"App\\": "App/",
-			"MF\\": "vendor/MF/"
-		}
-	}
+    "name": "rayssa/twitter-clone",
+    "description": "Twitter Clone Project",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "mf/model": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    }
 }
