@@ -2,6 +2,8 @@
     "name": "rayssa/twitter-clone",
     "description": "Twitter Clone Project",
     "type": "project",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=8.0",
         "mf/model": "dev-main"
