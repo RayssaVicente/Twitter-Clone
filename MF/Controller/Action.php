@@ -4,31 +4,37 @@ namespace MF\Controller;
 
 abstract class Action {
 
-	protected $view;
+    protected $view;
 
-	public function __construct() {
-		$this->view = new \stdClass();
-	}
+    public function __construct() {
+        $this->view = new \stdClass();
+    }
 
-	protected function render($view, $layout = 'layout') {
-		$this->view->page = $view;
+    protected function render($view, $layout = 'layout') {
+        $this->view->page = $view;
 
-		if(file_exists("../App/Views/".$layout.".phtml")) {
-			require_once "../App/Views/".$layout.".phtml";
-		} else {
-			$this->content();
-		}
-	}
+        // Caminho absoluto subindo 2 níveis (de MF/Controller para a Raiz) e entrando em App/Views
+        $caminho_layout = __DIR__ . "/../../App/Views/".$layout.".phtml";
 
-	protected function content() {
-		$classAtual = get_class($this);
+        if(file_exists($caminho_layout)) {
+            require_once $caminho_layout;
+        } else {
+            $this->content();
+        }
+    }
 
-		$classAtual = str_replace('App\\Controllers\\', '', $classAtual);
+    protected function content() {
+        $classAtual = get_class($this);
+        $classAtual = str_replace('App\\Controllers\\', '', $classAtual);
+        $classAtual = strtolower(str_replace('Controller', '', $classAtual));
 
-		$classAtual = strtolower(str_replace('Controller', '', $classAtual));
+        // Caminho absoluto para a View específica
+        $arquivo_view = __DIR__ . "/../../App/Views/".$classAtual."/".$this->view->page.".phtml";
 
-		require_once "../App/Views/".$classAtual."/".$this->view->page.".phtml";
-	}
+        if(file_exists($arquivo_view)) {
+            require_once $arquivo_view;
+        } else {
+            echo "Erro: Arquivo de View não encontrado em: " . $arquivo_view;
+        }
+    }
 }
-
-?>
