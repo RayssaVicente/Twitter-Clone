@@ -2,9 +2,8 @@
 
 namespace App;
 
-
-
-class  Route extends \MF\Init\Bootstrap{
+// Remova qualquer espaço extra entre class e Route
+class Route extends \MF\Init\Bootstrap {
 
 	protected function initRoutes() {
 
