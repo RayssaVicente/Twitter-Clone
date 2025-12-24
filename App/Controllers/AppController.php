@@ -9,14 +9,8 @@ use MF\Model\Container;
 class AppController extends Action {
 
 	public function timeline() {
-
-    session_start();
-
-    // Verifica se as chaves existem na sessão antes de comparar
-    if (!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
-        header('Location: /?login=erro');
-        exit; // Importante para parar a execução aqui
-    }
+    // Chama a validação (que já tem o session_start e o exit)
+    $this->validaAutenticacao();
 
     // Tweets
     $tweet = Container::getModel('Tweet');
@@ -27,6 +21,7 @@ class AppController extends Action {
     $usuario = Container::getModel('Usuario');
     $usuarios = [];
 
+    // Verificação de segurança para a busca
     if (isset($_GET['pesquisarPor']) && $_GET['pesquisarPor'] != '') {
         $usuarios = $usuario->getUsuariosPorNome(
             $_GET['pesquisarPor'],
@@ -35,9 +30,10 @@ class AppController extends Action {
     }
 
     $this->view->usuarios = $usuarios;
-
     $this->render('timeline');
-}
+    }
+
+
 
 
 
@@ -59,14 +55,16 @@ class AppController extends Action {
 
 
 public function validaAutenticacao() {
+    // Inicia a sessão apenas se ela ainda não existir
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-		session_start();
-
-		if(!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
-			header('Location: /?login=erro');
-		}	
-
-	}
+    if(!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
+        header('Location: /?login=erro');
+        exit; // <--- ESSA LINHA É OBRIGATÓRIA PARA PARAR O ERRO
+    }  
+}
 
 	public function quemSeguir() {
 
