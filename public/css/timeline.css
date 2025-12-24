@@ -1,191 +1,84 @@
-/* body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* 1. RESET E BASE */
+body {
+    background-color: #000 !important;
+    color: #fff;
+    overflow-x: hidden; /* Evita scroll horizontal no mobile */
 }
 
-.sidebar {
-  min-height: 100vh;
-  background-color: #000;
+/* Garante que as bordas do Bootstrap sigam a cor do X */
+.border-secondary {
+    border-color: #2f3336 !important;
+}
+
+/* 2. RESPONSIVIDADE DO FEED (Mobile First) */
+
+/* No Mobile: Esconde as colunas laterais e faz o feed ocupar 100% */
+@media (max-width: 991px) {
+    .col-2, .col-3 {
+        display: none !important; /* Esconde menu e quem seguir */
+    }
+    
+    .col-7 {
+        width: 100% !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+}
+
+/* No Desktop: Ajusta proporções e centraliza */
+@media (min-width: 992px) {
+    .container-fluid {
+        max-width: 1250px; /* Largura máxima do layout do X */
+        margin: 0 auto;
+    }
+
+    /* Fixa o menu lateral e a barra de busca se desejar */
+    .col-2, .col-3 {
+        display: block !important;
+    }
+}
+
+/* 3. ESTILIZAÇÃO DOS COMPONENTES */
+
+.nav-link {
+    font-size: 1.2rem;
+    padding: 12px 20px !important;
+    transition: 0.2s;
 }
 
 .nav-link:hover {
-  background-color: #1a1a1a;
-  border-radius: 30px;
+    background-color: #181818;
+    border-radius: 30px;
 }
 
-.post-box {
-  background-color: #000;
-  border-bottom: 1px solid #2f3336;
+.caixa-postagem {
+    border: none !important;
+    border-bottom: 1px solid #2f3336 !important;
+    font-size: 1.25rem;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-textarea:focus {
-  box-shadow: none !important;
+/* Avatar circular customizado (conforme seu HTML) */
+.bg-warning {
+    background-color: #ffd700 !important;
+    flex-shrink: 0;
 }
 
-.btn-primary {
-  background-color: #1d9bf0;
-  border: none;
+.btn-light {
+    background-color: #eff3f4 !important;
+    border: none;
 }
 
-.btn-primary:hover {
-  background-color: #1a8cd8;
+.btn-light:hover {
+    background-color: #d7dbdc !important;
 }
 
-.btn-outline-light:hover {
-  background-color: #1d9bf0;
-  border-color: #1d9bf0;
+/* Ícones azuis da postagem */
+.text-info {
+    color: #1d9bf0 !important;
 }
 
-input::placeholder {
-  color: #999;
-} */
-
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #000;
-  color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-/* Container Principal */
-.app-container {
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-/* Timeline Central (Ocupa 100% no mobile) */
-.timeline {
-  width: 100%;
-  max-width: 600px;
-  border-left: 1px solid #333;
-  border-right: 1px solid #333;
-}
-
-/* Esconder Sidebars no Mobile */
-.sidebar-left, .sidebar-right {
-  display: none;
-}
-.timeline-header {
-  position: sticky;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(5px);
-  border-bottom: 1px solid #333;
-  padding: 15px;
-  font-weight: bold;
-  font-size: 20px;
-  z-index: 10;
-}
-
-.post-box {
-  display: flex;
-  padding: 15px;
-  border-bottom: 1px solid #333;
-}
-
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: #ffd700; /* Cor amarela da imagem */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  font-weight: bold;
-  margin-right: 12px;
-}
-
-.post-input-container {
-  flex: 1;
-}
-
-.post-input-container textarea {
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  resize: none;
-  outline: none;
-  margin-bottom: 10px;
-}
-
-.post-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.icons {
-  display: flex;
-  gap: 15px;
-  color: #1d9bf0; /* Azul do Twitter */
-}
-
-.btn-post {
-  background-color: #fff;
-  color: #000;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.tweet-card {
-  padding: 15px;
-  border-bottom: 1px solid #333;
-  display: flex;
-  flex-direction: column;
-}
-
-.tweet-header {
-  font-size: 15px;
-  margin-bottom: 5px;
-}
-
-.tweet-header .name {
-  font-weight: bold;
-}
-
-.tweet-header .handle {
-  color: #71767b;
-  margin-left: 5px;
-}
-
-.tweet-content {
-  font-size: 15px;
-  line-height: 1.4;
-  margin-bottom: 10px;
-}
-
-.btn-excluir {
-  background-color: #f4212e; /* Vermelho do botão Excluir */
-  color: white;
-  border: none;
-  padding: 5px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: fit-content;
-}
-
-/* Mostrar Sidebars apenas em Desktop */
-@media (min-width: 1024px) {
-  .sidebar-left {
-    display: block;
-    width: 275px;
-    padding: 10px 20px;
-  }
-  .sidebar-right {
-    display: block;
-    width: 350px;
-    padding: 10px 20px;
-  }
+.bi {
+    cursor: pointer;
 }
