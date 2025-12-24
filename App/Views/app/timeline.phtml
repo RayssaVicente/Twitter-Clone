@@ -44,11 +44,11 @@
             class="form-control me-2 bg-black text-white border border-secondary rounded-pill ps-3" 
             placeholder="Search users..." 
             autocomplete="off">
-          <button type="submit" class="btn btn-outline-light btn-sm rounded-pill">Search</button>
+          <button type="submit" class="btn btn-outline-light btn-sm rounded-pill">Procurar</button>
         </form>
       </div>
       
-      <h5 class="fw-bold px-3 mb-3">Who to follow</h5>
+      <h5 class=" px-3 mb-3">Nenhum usuário encontrado.</h5>
 
       <?php if (!empty($this->view->usuarios)) : ?>
         <div class="px-2">
@@ -64,16 +64,16 @@
                  </div>
               </div>
               <?php if($usuario['seguindo_sn'] == 0): ?>
-                <a href="/acao?acao=seguir&id_usuario=<?= $usuario['id'] ?>" class="btn btn-light btn-sm rounded-pill fw-bold">Follow</a>
+                <a href="/acao?acao=seguir&id_usuario=<?= $usuario['id'] ?>" class="btn btn-light btn-sm rounded-pill fw-bold">Seguir</a>
               <?php else: ?>
-                <a href="/acao?acao=deixar_de_seguir&id_usuario=<?= $usuario['id'] ?>" class="btn btn-danger btn-sm rounded-pill fw-bold">Unfollow</a>
+                <a href="/acao?acao=deixar_de_seguir&id_usuario=<?= $usuario['id'] ?>" class="btn btn-danger btn-sm rounded-pill fw-bold">deixar de seguir</a>
               <?php endif; ?>
             </div>
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
       <div class="px-3 py-3">
-        <a href="/timeline" class="text-info text-decoration-none small">Show more</a>
+        <a href="/timeline" class="text-info text-decoration-none small">Procurar por pessoas conhecidas</a>
       </div>
     </div>
 
