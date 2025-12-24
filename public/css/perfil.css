@@ -1,41 +1,80 @@
+/* 1. BASE E RESET */
 body {
-    background-color: #000;
+    background-color: #000 !important;
+    color: #fff;
+    overflow-x: hidden;
 }
 
 .border-secondary {
-    border-color: #2f3336 !important; /* Cor exata da borda do X */
+    border-color: #2f3336 !important;
 }
 
+/* 2. RESPONSIVIDADE (O pulo do gato) */
+
+/* Mobile: Esconde colunas 2 e 3, expande a 7 */
+@media (max-width: 991px) {
+    .col-2, .col-3 {
+        display: none !important;
+    }
+    .col-7 {
+        width: 100% !important;
+        border: none !important;
+    }
+    /* Ajuste para a foto de perfil não ficar gigante no mobile */
+    .px-3.position-relative div[style*="width: 140px"] {
+        width: 100px !important;
+        height: 100px !important;
+        top: -50px !important;
+    }
+}
+
+/* Desktop: Centraliza o conteúdo */
+@media (min-width: 992px) {
+    .container-fluid {
+        max-width: 1230px;
+        margin: 0 auto;
+    }
+}
+
+/* 3. ESTILOS ESPECÍFICOS DO PERFIL */
+
+/* Capa do perfil */
 .bg-secondary {
-    background-color: #333639 !important; /* Cor da capa padrão */
+    background-color: #333639 !important;
 }
 
-/* Layout Base (Mobile First) */
-.container {
-  display: flex;
-  flex-direction: column;
+/* Imagens */
+.object-fit-cover {
+    object-fit: cover;
 }
 
-.main-content {
-  width: 100%;
-  border-left: none;
-  border-right: none;
+/* Botões customizados */
+.btn-outline-light {
+    border-color: #536471;
 }
 
-/* Desktop (Telas maiores) */
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .main-content {
-    width: 600px;
-    border-left: 1px solid #333;
-    border-right: 1px solid #333;
-  }
-  
-  .bottom-nav {
-    display: none; /* Esconde a barra de baixo no PC */
-  }
+.btn-outline-light:hover {
+    background-color: rgba(239, 243, 244, 0.1);
+}
+
+/* Modal de edição */
+.modal-content {
+    background-color: #000 !important;
+}
+
+.form-control:focus {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+/* Ajuste nos Nav-links para parecer o X */
+.nav-link {
+    transition: 0.2s;
+    border-radius: 30px;
+    display: inline-flex;
+    padding: 10px 15px !important;
+}
+
+.nav-link:hover {
+    background-color: #181818;
 }

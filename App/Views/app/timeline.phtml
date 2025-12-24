@@ -37,7 +37,7 @@
     </div>
 
    
-    <div class="col-3 py-3 px-4 border-start border-secondary order-3">
+    <!-- <div class="col-3 py-3 px-4 border-start border-secondary order-3">
       <div class="p-3 border-bottom border-secondary">
         <form method="GET" action="/timeline" class="d-flex">
           <input 
@@ -69,8 +69,45 @@
         </div>
       <?php elseif (isset($_GET['pesquisarPor'])): ?>
         <div class="px-3 text-muted">Nenhum usuário encontrado.</div>
-      <?php endif; ?>
+      <?php endif; ?> -->
+        <div class="col-3 py-3 px-4 border-start border-secondary order-3">
+  <div class="p-3 border-bottom border-secondary mb-3">
+    <form method="GET" action="/timeline" class="d-flex">
+      <input 
+        type="text" 
+        name="pesquisarPor" 
+        class="form-control me-2 bg-black text-white border border-secondary rounded-pill ps-3" 
+        placeholder="Search users..." 
+        autocomplete="off">
+      <button type="submit" class="btn btn-outline-light btn-sm rounded-pill">Search</button>
+    </form>
+  </div>
+  
+  <h5 class="fw-bold px-3 mb-3">Who to follow</h5>
 
+  <?php if (!empty($this->view->usuarios)) : ?>
+    <div class="px-2">
+      <?php foreach($this->view->usuarios as $usuario): ?>
+        <div class="d-flex justify-content-between align-items-center py-3 px-2 border-bottom border-secondary">
+          <div class="d-flex align-items-center">
+             <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <?= strtoupper(substr($usuario['nome'], 0, 1)) ?>
+             </div>
+             <div>
+                <div class="fw-bold small"><?= htmlspecialchars($usuario['nome']) ?></div>
+                <div class="text-muted small">@<?= htmlspecialchars($usuario['nome']) ?></div>
+             </div>
+          </div>
+          <?php if($usuario['seguindo_sn'] == 0): ?>
+            <a href="/acao?acao=seguir&id_usuario=<?= $usuario['id'] ?>" class="btn btn-light btn-sm rounded-pill fw-bold">Follow</a>
+          <?php else: ?>
+            <a href="/acao?acao=deixar_de_seguir&id_usuario=<?= $usuario['id'] ?>" class="btn btn-danger btn-sm rounded-pill fw-bold">Unfollow</a>
+          <?php endif; ?>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+</div>
       <div class="px-3 py-2">
         <a href="/timeline" class="text-info text-decoration-none small">Procurar por pessoas conhecidas</a>
       </div>

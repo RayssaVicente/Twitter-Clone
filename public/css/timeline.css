@@ -2,49 +2,57 @@
 body {
     background-color: #000 !important;
     color: #fff;
-    overflow-x: hidden; /* Evita scroll horizontal no mobile */
+    overflow-x: hidden;
 }
 
-/* Garante que as bordas do Bootstrap sigam a cor do X */
 .border-secondary {
     border-color: #2f3336 !important;
 }
 
-/* 2. RESPONSIVIDADE DO FEED (Mobile First) */
+/* 2. RESPONSIVIDADE (Ajustada para mostrar a busca no mobile) */
 
-/* No Mobile: Esconde as colunas laterais e faz o feed ocupar 100% */
 @media (max-width: 991px) {
-    .col-2, .col-3 {
-        display: none !important; /* Esconde menu e quem seguir */
+    /* Esconde apenas o menu lateral esquerdo para poupar espaço */
+    .col-2 {
+        display: none !important;
     }
     
+    /* Feed ocupa 100% */
     .col-7 {
         width: 100% !important;
+        border: none !important;
+    }
+
+    /* BARRA DE BUSCA/SEGUIR NO MOBILE:
+       Agora ela aparece abaixo do feed em vez de sumir */
+    .col-3 {
+        width: 100% !important;
+        display: block !important;
         border-left: none !important;
-        border-right: none !important;
+        border-top: 1px solid #2f3336 !important;
+        padding-bottom: 80px !important; /* Espaço extra no final */
+    }
+
+    /* Melhora visual dos cards de usuário no mobile */
+    .col-3 .d-flex.justify-content-between {
+        background-color: #16181c;
+        padding: 15px;
+        border-radius: 15px;
+        margin-bottom: 10px;
     }
 }
 
-/* No Desktop: Ajusta proporções e centraliza */
 @media (min-width: 992px) {
     .container-fluid {
-        max-width: 1250px; /* Largura máxima do layout do X */
+        max-width: 1250px;
         margin: 0 auto;
     }
-
-    /* Fixa o menu lateral e a barra de busca se desejar */
     .col-2, .col-3 {
         display: block !important;
     }
 }
 
 /* 3. ESTILIZAÇÃO DOS COMPONENTES */
-
-.nav-link {
-    font-size: 1.2rem;
-    padding: 12px 20px !important;
-    transition: 0.2s;
-}
 
 .nav-link:hover {
     background-color: #181818;
@@ -57,9 +65,9 @@ body {
     font-size: 1.25rem;
     outline: none !important;
     box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
-/* Avatar circular customizado (conforme seu HTML) */
 .bg-warning {
     background-color: #ffd700 !important;
     flex-shrink: 0;
@@ -70,11 +78,6 @@ body {
     border: none;
 }
 
-.btn-light:hover {
-    background-color: #d7dbdc !important;
-}
-
-/* Ícones azuis da postagem */
 .text-info {
     color: #1d9bf0 !important;
 }
