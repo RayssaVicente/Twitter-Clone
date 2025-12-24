@@ -12,9 +12,10 @@ class AppController extends Action {
 
     session_start();
 
-    if ($_SESSION['id'] == '' || $_SESSION['nome'] == '') {
+    // Verifica se as chaves existem na sessão antes de comparar
+    if (!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
         header('Location: /?login=erro');
-        return;
+        exit; // Importante para parar a execução aqui
     }
 
     // Tweets
