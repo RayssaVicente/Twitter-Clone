@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -37,4 +37,155 @@ textarea:focus {
 
 input::placeholder {
   color: #999;
+} */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Container Principal */
+.app-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Timeline Central (Ocupa 100% no mobile) */
+.timeline {
+  width: 100%;
+  max-width: 600px;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+}
+
+/* Esconder Sidebars no Mobile */
+.sidebar-left, .sidebar-right {
+  display: none;
+}
+.timeline-header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid #333;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 10;
+}
+
+.post-box {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ffd700; /* Cor amarela da imagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.post-input-container {
+  flex: 1;
+}
+
+.post-input-container textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  resize: none;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  gap: 15px;
+  color: #1d9bf0; /* Azul do Twitter */
+}
+
+.btn-post {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tweet-card {
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.tweet-header {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.tweet-header .name {
+  font-weight: bold;
+}
+
+.tweet-header .handle {
+  color: #71767b;
+  margin-left: 5px;
+}
+
+.tweet-content {
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.btn-excluir {
+  background-color: #f4212e; /* Vermelho do botão Excluir */
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+/* Mostrar Sidebars apenas em Desktop */
+@media (min-width: 1024px) {
+  .sidebar-left {
+    display: block;
+    width: 275px;
+    padding: 10px 20px;
+  }
+  .sidebar-right {
+    display: block;
+    width: 350px;
+    padding: 10px 20px;
+  }
 }

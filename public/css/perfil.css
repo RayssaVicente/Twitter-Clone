@@ -9,3 +9,33 @@ body {
 .bg-secondary {
     background-color: #333639 !important; /* Cor da capa padrão */
 }
+
+/* Layout Base (Mobile First) */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  width: 100%;
+  border-left: none;
+  border-right: none;
+}
+
+/* Desktop (Telas maiores) */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .main-content {
+    width: 600px;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+  }
+  
+  .bottom-nav {
+    display: none; /* Esconde a barra de baixo no PC */
+  }
+}
